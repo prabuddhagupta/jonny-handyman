@@ -16,12 +16,14 @@ import {
 } from "lucide-react";
 
 const serviceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  "bathroom-remodels": Droplets,
+  "kitchen-remodels": Hammer,
+  "decks": LayoutGrid,
   "drywall-painting": Wrench,
   "faucets-fixtures": Droplets,
   "doors-locks": DoorOpen,
   "mounting-assembly": Tv,
   "flooring-tile": LayoutGrid,
-  "small-remodels": Hammer,
 };
 
 export default function Home() {
@@ -36,12 +38,12 @@ export default function Home() {
                 {site.primaryCity} · Main Line
               </p>
               <h1 className="mt-3 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[var(--color-brand)] leading-[1.05]">
-                Honest home repairs in {site.primaryCity}.
+                Bathroom, kitchen, and deck remodels in {site.primaryCity}.
               </h1>
               <p className="mt-5 text-xl text-[var(--color-muted)] leading-relaxed max-w-xl">
-                One person. Every repair. No surprises. Jonny handles drywall,
-                doors, faucets, mounting, tile, and small remodels — and
-                replies fast on WhatsApp.
+                Licensed and insured. Run by {site.ownerName}. One person you
+                can actually trust to do the work right — from a full bathroom
+                remodel to a tricky drywall patch.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <WhatsAppButton size="lg" label="Chat on WhatsApp" />
@@ -54,7 +56,7 @@ export default function Home() {
                 </Link>
               </div>
               <p className="mt-5 text-sm text-[var(--color-muted)]">
-                Licensed & insured · Free estimates · No surprise fees
+                Licensed & insured · Free estimates · Call or text {site.smsNumber}
               </p>
             </div>
 
@@ -86,37 +88,76 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services grid */}
+      {/* Services — two tiers */}
       <section className="mx-auto max-w-6xl px-4 py-20">
         <div className="max-w-2xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--color-brand)]">
-            What Jonny fixes
+          <p className="text-sm font-semibold uppercase tracking-wide text-[var(--color-accent)]">
+            Remodels
+          </p>
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-[var(--color-brand)]">
+            The big jobs
           </h2>
           <p className="mt-3 text-lg text-[var(--color-muted)]">
-            From a squeaky door to a bathroom refresh — one call, one person,
-            one price.
+            Bathrooms, kitchens, and decks. Licensed, insured, done right.
           </p>
         </div>
 
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((s) => {
-            const Icon = serviceIcons[s.slug] ?? Wrench;
-            return (
-              <Link
-                key={s.slug}
-                href="/services"
-                className="group p-6 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-brand)] hover:shadow-md transition bg-white"
-              >
-                <Icon className="size-7 text-[var(--color-accent)]" />
-                <h3 className="mt-4 font-semibold text-lg text-[var(--color-ink)] group-hover:text-[var(--color-brand)]">
-                  {s.title}
-                </h3>
-                <p className="mt-1 text-sm text-[var(--color-muted)] leading-relaxed">
-                  {s.description}
-                </p>
-              </Link>
-            );
-          })}
+        <div className="mt-8 grid md:grid-cols-3 gap-5">
+          {services
+            .filter((s) => s.tier === "remodel")
+            .map((s) => {
+              const Icon = serviceIcons[s.slug] ?? Wrench;
+              return (
+                <Link
+                  key={s.slug}
+                  href="/services"
+                  className="group p-7 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-brand)] hover:shadow-lg transition bg-white"
+                >
+                  <div className="size-12 rounded-lg bg-[var(--color-brand)] flex items-center justify-center">
+                    <Icon className="size-6 text-white" />
+                  </div>
+                  <h3 className="mt-5 font-semibold text-xl text-[var(--color-ink)] group-hover:text-[var(--color-brand)]">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+                    {s.description}
+                  </p>
+                </Link>
+              );
+            })}
+        </div>
+
+        <div className="mt-16 max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wide text-[var(--color-accent)]">
+            Everyday repairs
+          </p>
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-[var(--color-brand)]">
+            Plus all the small stuff
+          </h2>
+          <p className="mt-3 text-lg text-[var(--color-muted)]">
+            If it&apos;s broken, loose, leaky, or needs to go up on the wall —
+            {` ${site.ownerName}`} handles it.
+          </p>
+        </div>
+
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {services
+            .filter((s) => s.tier === "repair")
+            .map((s) => {
+              const Icon = serviceIcons[s.slug] ?? Wrench;
+              return (
+                <Link
+                  key={s.slug}
+                  href="/services"
+                  className="group p-5 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-brand)] hover:shadow-md transition bg-white"
+                >
+                  <Icon className="size-6 text-[var(--color-accent)]" />
+                  <h3 className="mt-3 font-semibold text-base text-[var(--color-ink)] group-hover:text-[var(--color-brand)]">
+                    {s.title}
+                  </h3>
+                </Link>
+              );
+            })}
         </div>
 
         <div className="mt-8">
@@ -124,7 +165,7 @@ export default function Home() {
             href="/services"
             className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-brand)] hover:underline"
           >
-            See all services <ArrowRight className="size-4" />
+            See full service list <ArrowRight className="size-4" />
           </Link>
         </div>
       </section>
@@ -172,8 +213,8 @@ export default function Home() {
             Ready to get it fixed?
           </h2>
           <p className="mt-3 text-lg text-white/80 max-w-xl mx-auto">
-            Tell Jonny what needs fixing. You&apos;ll hear back within a few
-            hours.
+            Tell {site.ownerName} what you need. You&apos;ll hear back within
+            a few hours. Or call {site.smsNumber}.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <WhatsAppButton size="lg" label="Chat on WhatsApp" />

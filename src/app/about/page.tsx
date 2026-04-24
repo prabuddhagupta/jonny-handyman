@@ -42,23 +42,29 @@ export default function AboutPage() {
 
           <div className="md:col-span-2 space-y-5 text-lg text-[var(--color-ink)] leading-relaxed">
             <p>
-              Jonny is the one person you call when something in your house
-              needs fixing. Whether it&apos;s a door that won&apos;t shut
-              right, a bathroom that needs a refresh, or a wall that
-              won&apos;t stop dripping after a rainstorm — he shows up, gets
-              it done, and leaves it better than he found it.
+              Jonny runs {site.brandName} — a licensed and insured, one-person
+              operation serving {site.primaryCity} and the Main Line.
+              Bathrooms, kitchens, decks, drywall, tile, doors, and just about
+              every kind of house repair in between.
             </p>
             <p>
-              He serves {site.primaryCity} and the Main Line — Wayne, Bryn
+              The truck you&apos;ve seen around the neighborhood (white Ford
+              Transit, &quot;REMODELING - BATHROOMS · KITCHENS - DECKS&quot;
+              on the side) is his. One person shows up — no rotating crew, no
+              subs — so the quality you see on day one is what you get on day
+              five.
+            </p>
+            <p>
+              He covers {site.primaryCity} and the Main Line — Wayne, Bryn
               Mawr, Ardmore, Radnor, and the neighborhoods in between. Local
-              work only. He&apos;s not the guy who drives an hour to a job and
-              charges you for the truck.
+              work only. He&apos;s not the guy who drives an hour to a job
+              and charges you for the truck.
             </p>
             <p>
               <strong>A note on communication:</strong> Jonny is fastest over
-              WhatsApp and text. If you call, leave a voicemail and he&apos;ll
-              get back to you. For estimates, a short description and a photo
-              go a long way.
+              WhatsApp and text ({site.smsNumber}). If you call, leave a
+              voicemail and he&apos;ll get back to you. For estimates, a short
+              description and a photo go a long way.
             </p>
           </div>
         </div>

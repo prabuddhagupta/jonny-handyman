@@ -6,10 +6,13 @@ import { ArrowRight, Check, Info } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: `Handyman services in ${site.primaryCity} and the Main Line — drywall, faucets, doors, mounting, tile, and small remodels.`,
+  description: `Bathroom, kitchen, and deck remodels plus handyman repairs in ${site.primaryCity} and the Main Line. Licensed and insured.`,
 };
 
 export default function ServicesPage() {
+  const remodels = services.filter((s) => s.tier === "remodel");
+  const repairs = services.filter((s) => s.tier === "repair");
+
   return (
     <>
       <section className="mx-auto max-w-6xl px-4 pt-16 pb-10 md:pt-20">
@@ -17,25 +20,34 @@ export default function ServicesPage() {
           Services
         </p>
         <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-brand)] leading-tight">
-          What Jonny fixes
+          What {site.ownerName} handles
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-[var(--color-muted)]">
-          If it&apos;s in a home and it&apos;s broken, chipped, loose, leaky, or
-          just not installed yet — ask. If it&apos;s not on this list, Jonny
-          will tell you straight.
+          Two tiers of work: bigger remodels (bathrooms, kitchens, decks) and
+          the everyday repairs that make a house feel finished. Licensed,
+          insured, and done right the first time.
         </p>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16">
-        <div className="grid md:grid-cols-2 gap-5">
-          {services.map((s) => (
+      {/* Remodels */}
+      <section className="mx-auto max-w-6xl px-4 pb-8">
+        <div className="flex items-baseline justify-between flex-wrap gap-2 mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-brand)]">
+            Remodels
+          </h2>
+          <p className="text-sm text-[var(--color-muted)]">
+            The big projects on the truck.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {remodels.map((s) => (
             <article
               key={s.slug}
-              className="p-7 rounded-xl border border-[var(--color-border)] bg-white"
+              className="p-7 rounded-xl border-2 border-[var(--color-brand)]/20 bg-white hover:border-[var(--color-brand)] transition"
             >
-              <h2 className="text-xl font-semibold text-[var(--color-brand)]">
+              <h3 className="text-xl font-semibold text-[var(--color-brand)]">
                 {s.title}
-              </h2>
+              </h3>
               <p className="mt-2 text-[var(--color-muted)] leading-relaxed">
                 {s.description}
               </p>
@@ -48,15 +60,48 @@ export default function ServicesPage() {
             </article>
           ))}
         </div>
+      </section>
+
+      {/* Repairs */}
+      <section className="mx-auto max-w-6xl px-4 pt-10 pb-16">
+        <div className="flex items-baseline justify-between flex-wrap gap-2 mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-brand)]">
+            Everyday repairs
+          </h2>
+          <p className="text-sm text-[var(--color-muted)]">
+            One person, one call. No crew, no runaround.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {repairs.map((s) => (
+            <article
+              key={s.slug}
+              className="p-6 rounded-xl border border-[var(--color-border)] bg-white"
+            >
+              <h3 className="font-semibold text-[var(--color-brand)]">
+                {s.title}
+              </h3>
+              <p className="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+                {s.description}
+              </p>
+              {s.note && (
+                <p className="mt-3 flex items-start gap-2 text-xs text-[var(--color-muted)]">
+                  <Info className="size-3.5 shrink-0 mt-0.5 text-[var(--color-accent)]" />
+                  <span>{s.note}</span>
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
 
         <div className="mt-10 p-6 md:p-8 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]">
           <h3 className="text-lg font-semibold text-[var(--color-brand)]">
-            Not sure if Jonny handles it?
+            Not sure if {site.ownerName} handles it?
           </h3>
           <p className="mt-2 text-[var(--color-muted)]">
-            Send a photo on WhatsApp. If it&apos;s something Jonny doesn&apos;t
-            do, he&apos;ll tell you and point you to someone who does. No
-            wasted estimates.
+            Send a photo on WhatsApp. If it&apos;s not the right fit,{" "}
+            {site.ownerName} will tell you and point you to someone who does.
+            No wasted estimates.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <WhatsAppButton label="Send a photo on WhatsApp" />
@@ -74,13 +119,13 @@ export default function ServicesPage() {
       <section className="bg-[var(--color-brand)] text-white">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <h2 className="text-2xl md:text-3xl font-bold">
-            The way Jonny works
+            How {site.ownerName} works
           </h2>
           <ul className="mt-6 grid md:grid-cols-2 gap-4 text-white/90">
             {[
-              "Text a photo of what needs fixing. Jonny replies with a free estimate — usually same day.",
+              `Text a photo of what needs doing. ${site.ownerName} replies with a free estimate — usually same day.`,
               "Agree on the quote before any work starts. No surprise fees, no hourly creep.",
-              "Jonny shows up on time, works clean, and respects your home.",
+              `${site.ownerName} shows up on time, works clean, and respects your home.`,
               "If something isn't right after the job, he comes back and fixes it.",
             ].map((t) => (
               <li key={t} className="flex items-start gap-3">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { site } from "@/site.config";
-import { InstagramIcon as Instagram } from "./icons";
+import { InstagramIcon as Instagram, TruckLogo } from "./icons";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -8,14 +8,15 @@ export function Footer() {
     <footer className="mt-20 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       <div className="mx-auto max-w-6xl px-4 py-10 grid gap-8 md:grid-cols-3">
         <div>
-          <p className="font-semibold text-[var(--color-brand)] text-lg">
-            {site.brandName}
-          </p>
-          <p className="mt-1 text-sm text-[var(--color-muted)]">
-            {site.tagline}
+          <div className="flex items-center gap-3 text-[var(--color-brand)]">
+            <TruckLogo className="size-8" />
+            <p className="font-semibold text-lg">{site.brandName}</p>
+          </div>
+          <p className="mt-2 text-sm text-[var(--color-muted)]">
+            Run by {site.ownerName}. Licensed & insured.
           </p>
           <p className="mt-3 text-sm text-[var(--color-muted)]">
-            Text or WhatsApp for a free estimate. We reply within a few hours.
+            Call or text {site.smsNumber} — or WhatsApp for a free estimate.
           </p>
         </div>
 

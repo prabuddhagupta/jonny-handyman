@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/site.config";
 import { WhatsAppButton } from "./WhatsAppButton";
+import { TruckLogo } from "./icons";
 
 const nav = [
   { href: "/services", label: "Services" },
@@ -18,11 +19,17 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="flex items-baseline gap-2 font-semibold text-lg text-[var(--color-brand)]"
+          className="flex items-center gap-3 text-[var(--color-brand)]"
+          aria-label={`${site.brandName} home`}
         >
-          <span>{site.brandName}</span>
-          <span className="hidden sm:inline text-xs font-normal text-[var(--color-muted)]">
-            · {site.primaryCity} Handyman
+          <TruckLogo className="size-9 shrink-0" />
+          <span className="flex flex-col leading-tight">
+            <span className="font-semibold text-base sm:text-lg">
+              {site.brandName}
+            </span>
+            <span className="hidden sm:inline text-[11px] font-normal text-[var(--color-muted)]">
+              by {site.ownerName} · {site.primaryCity}
+            </span>
           </span>
         </Link>
 
