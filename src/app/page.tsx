@@ -1,65 +1,212 @@
-import Image from "next/image";
+import Link from "next/link";
+import { site, services } from "@/site.config";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import {
+  CheckCircle2,
+  Shield,
+  MessageSquareText,
+  MapPin,
+  ArrowRight,
+  Wrench,
+  DoorOpen,
+  Droplets,
+  Tv,
+  LayoutGrid,
+  Hammer,
+} from "lucide-react";
+
+const serviceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  "drywall-painting": Wrench,
+  "faucets-fixtures": Droplets,
+  "doors-locks": DoorOpen,
+  "mounting-assembly": Tv,
+  "flooring-tile": LayoutGrid,
+  "small-remodels": Hammer,
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-6xl px-4 pt-16 pb-20 md:pt-24 md:pb-28">
+          <div className="grid md:grid-cols-5 gap-10 items-center">
+            <div className="md:col-span-3">
+              <p className="text-sm font-medium uppercase tracking-wide text-[var(--color-accent)]">
+                {site.primaryCity} · Main Line
+              </p>
+              <h1 className="mt-3 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[var(--color-brand)] leading-[1.05]">
+                Honest home repairs in {site.primaryCity}.
+              </h1>
+              <p className="mt-5 text-xl text-[var(--color-muted)] leading-relaxed max-w-xl">
+                One person. Every repair. No surprises. Jonny handles drywall,
+                doors, faucets, mounting, tile, and small remodels — and
+                replies fast on WhatsApp.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <WhatsAppButton size="lg" label="Chat on WhatsApp" />
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-6 py-3.5 text-base font-semibold text-[var(--color-brand)] hover:bg-[var(--color-surface)] transition"
+                >
+                  Request a free estimate
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+              <p className="mt-5 text-sm text-[var(--color-muted)]">
+                Licensed & insured · Free estimates · No surprise fees
+              </p>
+            </div>
+
+            <div className="md:col-span-2">
+              <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-soft)] relative overflow-hidden shadow-xl">
+                <div className="absolute inset-0 flex items-center justify-center p-8">
+                  <div className="text-center text-white">
+                    <Wrench className="size-16 mx-auto opacity-40" />
+                    <p className="mt-4 text-sm opacity-70">
+                      Hero photo: replace with best
+                      <br />
+                      Instagram post from @{site.instagramHandle}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust bar */}
+      <section className="bg-[var(--color-surface)] border-y border-[var(--color-border)]">
+        <div className="mx-auto max-w-6xl px-4 py-10 grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <Trust icon={Shield} title="Licensed & insured" body="Your home is protected." />
+          <Trust icon={MessageSquareText} title="Fast WhatsApp reply" body="Usually within a few hours." />
+          <Trust icon={MapPin} title="Local" body={`${site.primaryCity} & Main Line only.`} />
+          <Trust icon={CheckCircle2} title="No surprise fees" body="Always a quote before we start." />
+        </div>
+      </section>
+
+      {/* Services grid */}
+      <section className="mx-auto max-w-6xl px-4 py-20">
+        <div className="max-w-2xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--color-brand)]">
+            What Jonny fixes
+          </h2>
+          <p className="mt-3 text-lg text-[var(--color-muted)]">
+            From a squeaky door to a bathroom refresh — one call, one person,
+            one price.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((s) => {
+            const Icon = serviceIcons[s.slug] ?? Wrench;
+            return (
+              <Link
+                key={s.slug}
+                href="/services"
+                className="group p-6 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-brand)] hover:shadow-md transition bg-white"
+              >
+                <Icon className="size-7 text-[var(--color-accent)]" />
+                <h3 className="mt-4 font-semibold text-lg text-[var(--color-ink)] group-hover:text-[var(--color-brand)]">
+                  {s.title}
+                </h3>
+                <p className="mt-1 text-sm text-[var(--color-muted)] leading-relaxed">
+                  {s.description}
+                </p>
+              </Link>
+            );
+          })}
         </div>
-      </main>
+
+        <div className="mt-8">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-brand)] hover:underline"
+          >
+            See all services <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* Recent work */}
+      <section className="bg-[var(--color-surface)] border-y border-[var(--color-border)]">
+        <div className="mx-auto max-w-6xl px-4 py-20">
+          <div className="flex items-end justify-between flex-wrap gap-4">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--color-brand)]">
+                Recent work
+              </h2>
+              <p className="mt-2 text-[var(--color-muted)]">
+                Photos from real jobs in and around {site.primaryCity}.
+              </p>
+            </div>
+            <Link
+              href="/gallery"
+              className="text-sm font-medium text-[var(--color-brand)] hover:underline"
+            >
+              See the gallery →
+            </Link>
+          </div>
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="aspect-square rounded-lg bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center text-xs text-stone-500"
+              >
+                IG #{i + 1}
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-xs text-[var(--color-muted)]">
+            Placeholder grid — replace with real @{site.instagramHandle} posts in{" "}
+            <code className="text-xs">src/site.config.ts</code>.
+          </p>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="mx-auto max-w-6xl px-4 py-20">
+        <div className="rounded-2xl bg-[var(--color-brand)] text-white p-10 md:p-14 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            Ready to get it fixed?
+          </h2>
+          <p className="mt-3 text-lg text-white/80 max-w-xl mx-auto">
+            Tell Jonny what needs fixing. You&apos;ll hear back within a few
+            hours.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <WhatsAppButton size="lg" label="Chat on WhatsApp" />
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-base font-semibold text-white hover:bg-white/10 transition"
+            >
+              Request a free estimate
+              <ArrowRight className="size-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function Trust({
+  icon: Icon,
+  title,
+  body,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  body: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <Icon className="size-6 text-[var(--color-brand)] shrink-0 mt-0.5" />
+      <div>
+        <p className="font-semibold text-sm text-[var(--color-ink)]">{title}</p>
+        <p className="text-sm text-[var(--color-muted)]">{body}</p>
+      </div>
     </div>
   );
 }
