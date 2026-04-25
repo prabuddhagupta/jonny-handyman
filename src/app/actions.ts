@@ -86,10 +86,13 @@ export async function submitEstimate(
   const { name, email, phone, address, description } = parsed.data;
 
   try {
+    // SANDBOX: until handymanhouserepair.com is verified in Resend, free-tier
+    // sends must come from onboarding@resend.dev and may only land in the
+    // Resend account's signup email. Flipping these two lines back when the
+    // domain is verified restores the real recipient + BCC owner setup.
     await resend.emails.send({
-      from: `${site.brandName} Site <noreply@${site.domain}>`,
-      to: [site.contactEmail],
-      bcc: [site.notificationEmail],
+      from: `${site.brandName} Site <onboarding@resend.dev>`,
+      to: [site.notificationEmail],
       replyTo: email || undefined,
       subject: `New estimate request — ${name}`,
       text: [
