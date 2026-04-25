@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, services } from "@/site.config";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { TruckLogo } from "@/components/icons";
 import {
   CheckCircle2,
   Shield,
@@ -30,15 +31,26 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-4 pt-16 pb-20 md:pt-24 md:pb-28">
+      <section
+        className="relative overflow-hidden bg-[var(--color-surface)]"
+        style={{
+          backgroundImage: "url('/pattern-blueprint.svg')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "240px 240px",
+        }}
+      >
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/40 to-white/90 pointer-events-none"
+        />
+        <div className="relative mx-auto max-w-6xl px-4 pt-16 pb-20 md:pt-24 md:pb-28">
           <div className="grid md:grid-cols-5 gap-10 items-center">
             <div className="md:col-span-3">
               <p className="text-sm font-medium uppercase tracking-wide text-[var(--color-accent)]">
-                {site.primaryCity} · Main Line
+                {site.primaryCity} · Est. {site.establishedYear}
               </p>
               <h1 className="mt-3 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[var(--color-brand)] leading-[1.05]">
-                Bathroom, kitchen, and deck remodels in {site.primaryCity}.
+                Bathroom, kitchen, and deck remodels across {site.primaryCity}.
               </h1>
               <p className="mt-5 text-xl text-[var(--color-muted)] leading-relaxed max-w-xl">
                 Licensed and insured. Run by {site.ownerName}. One person you
@@ -61,17 +73,11 @@ export default function Home() {
             </div>
 
             <div className="md:col-span-2">
-              <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-soft)] relative overflow-hidden shadow-xl">
-                <div className="absolute inset-0 flex items-center justify-center p-8">
-                  <div className="text-center text-white">
-                    <Wrench className="size-16 mx-auto opacity-40" />
-                    <p className="mt-4 text-sm opacity-70">
-                      Hero photo: replace with best
-                      <br />
-                      Instagram post from @{site.instagramHandle}
-                    </p>
-                  </div>
-                </div>
+              <div className="aspect-[4/5] rounded-2xl bg-white relative overflow-hidden shadow-xl ring-1 ring-[var(--color-border)] flex flex-col items-center justify-center p-8">
+                <TruckLogo className="w-full max-w-[260px] h-auto" />
+                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-muted)]">
+                  Est. {site.establishedYear} · {site.primaryCity}
+                </p>
               </div>
             </div>
           </div>
@@ -83,7 +89,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-10 grid sm:grid-cols-2 md:grid-cols-4 gap-6">
           <Trust icon={Shield} title="Licensed & insured" body="Your home is protected." />
           <Trust icon={MessageSquareText} title="Fast WhatsApp reply" body="Usually within a few hours." />
-          <Trust icon={MapPin} title="Local" body={`${site.primaryCity} & Main Line only.`} />
+          <Trust icon={MapPin} title="Local" body={`${site.primaryCity} & surrounding areas only.`} />
           <Trust icon={CheckCircle2} title="No surprise fees" body="Always a quote before we start." />
         </div>
       </section>
@@ -167,42 +173,6 @@ export default function Home() {
           >
             See full service list <ArrowRight className="size-4" />
           </Link>
-        </div>
-      </section>
-
-      {/* Recent work */}
-      <section className="bg-[var(--color-surface)] border-y border-[var(--color-border)]">
-        <div className="mx-auto max-w-6xl px-4 py-20">
-          <div className="flex items-end justify-between flex-wrap gap-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--color-brand)]">
-                Recent work
-              </h2>
-              <p className="mt-2 text-[var(--color-muted)]">
-                Photos from real jobs in and around {site.primaryCity}.
-              </p>
-            </div>
-            <Link
-              href="/gallery"
-              className="text-sm font-medium text-[var(--color-brand)] hover:underline"
-            >
-              See the gallery →
-            </Link>
-          </div>
-          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={i}
-                className="aspect-square rounded-lg bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center text-xs text-stone-500"
-              >
-                IG #{i + 1}
-              </div>
-            ))}
-          </div>
-          <p className="mt-4 text-xs text-[var(--color-muted)]">
-            Placeholder grid — replace with real @{site.instagramHandle} posts in{" "}
-            <code className="text-xs">src/site.config.ts</code>.
-          </p>
         </div>
       </section>
 

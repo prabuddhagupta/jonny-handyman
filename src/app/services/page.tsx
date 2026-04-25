@@ -6,7 +6,7 @@ import { ArrowRight, Check, Info } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: `Bathroom, kitchen, and deck remodels plus handyman repairs in ${site.primaryCity} and the Main Line. Licensed and insured.`,
+  description: `Bathroom, kitchen, and deck remodels plus handyman repairs in ${site.primaryCity} and the surrounding areas. Licensed and insured.`,
 };
 
 export default function ServicesPage() {

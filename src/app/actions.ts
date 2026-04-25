@@ -4,12 +4,25 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { site } from "@/site.config";
 
-const EstimateSchema = z.object({
-  name: z.string().min(2, "Please share your name"),
-  contact: z.string().min(5, "Phone, email, or WhatsApp so Jonny can reply"),
-  address: z.string().optional(),
-  description: z.string().min(10, "A few details, please"),
-});
+const phoneRegex = /^[+]?[0-9 ()\-.]{10,}$/;
+
+const EstimateSchema = z
+  .object({
+    name: z.string().min(2, "Please share your name"),
+    email: z.union([z.literal(""), z.email("Please enter a valid email")]),
+    phone: z.union([
+      z.literal(""),
+      z
+        .string()
+        .regex(phoneRegex, "Please enter a valid phone or WhatsApp number"),
+    ]),
+    address: z.string().optional(),
+    description: z.string().min(10, "A few details, please"),
+  })
+  .refine((d) => d.email.length > 0 || d.phone.length > 0, {
+    message: `Please provide an email or phone so ${site.ownerName} can reply`,
+    path: ["phone"],
+  });
 
 export type EstimateInput = z.infer<typeof EstimateSchema>;
 
@@ -22,10 +35,11 @@ export async function submitEstimate(
   formData: FormData
 ): Promise<EstimateResult> {
   const raw = {
-    name: String(formData.get("name") ?? ""),
-    contact: String(formData.get("contact") ?? ""),
-    address: String(formData.get("address") ?? ""),
-    description: String(formData.get("description") ?? ""),
+    name: String(formData.get("name") ?? "").trim(),
+    email: String(formData.get("email") ?? "").trim(),
+    phone: String(formData.get("phone") ?? "").trim(),
+    address: String(formData.get("address") ?? "").trim(),
+    description: String(formData.get("description") ?? "").trim(),
   };
 
   const parsed = EstimateSchema.safeParse(raw);
@@ -45,23 +59,23 @@ export async function submitEstimate(
     console.error("[estimate] RESEND_API_KEY not set — form not wired up yet.");
     return {
       ok: false,
-      error:
-        "Sorry, our form isn't connected yet. Please WhatsApp Jonny directly.",
+      error: `Sorry, our form isn't connected yet. Please WhatsApp ${site.ownerName} directly.`,
     };
   }
 
   const resend = new Resend(apiKey);
-  const { name, contact, address, description } = parsed.data;
+  const { name, email, phone, address, description } = parsed.data;
 
   try {
     await resend.emails.send({
       from: `${site.brandName} Site <noreply@${site.domain}>`,
       to: [site.contactEmail],
-      replyTo: contact.includes("@") ? contact : undefined,
+      replyTo: email || undefined,
       subject: `New estimate request — ${name}`,
       text: [
         `Name: ${name}`,
-        `Contact: ${contact}`,
+        email ? `Email: ${email}` : "",
+        phone ? `Phone: ${phone}` : "",
         address ? `Address: ${address}` : "",
         "",
         "Description:",
@@ -75,7 +89,7 @@ export async function submitEstimate(
     console.error("[estimate] Resend failed:", err);
     return {
       ok: false,
-      error: "Couldn't send the request. Please WhatsApp Jonny directly.",
+      error: `Couldn't send the request. Please WhatsApp ${site.ownerName} directly.`,
     };
   }
 }

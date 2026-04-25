@@ -6,7 +6,7 @@ export function LocalBusinessSchema() {
     "@type": "HomeAndConstructionBusiness",
     name: `${site.brandName} — ${site.tagline}`,
     alternateName: site.legalName,
-    description: `Honest home repairs and small remodels in ${site.primaryCity} and the Main Line. Licensed and insured.`,
+    description: `Honest home repairs and small remodels in ${site.primaryCity} and the surrounding areas. ${site.license}, insured, and serving the area since ${site.establishedYear}.`,
     url: `https://${site.domain}`,
     telephone: `+${site.whatsappNumber}`,
     email: site.contactEmail,

@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { submitEstimate, type EstimateResult } from "@/app/actions";
+import { site } from "@/site.config";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 const initial: EstimateResult | null = null;
@@ -14,7 +15,7 @@ export function EstimateForm() {
       <div className="p-8 rounded-xl border border-[var(--color-whatsapp)] bg-green-50">
         <CheckCircle2 className="size-8 text-[var(--color-whatsapp)]" />
         <h3 className="mt-3 text-xl font-semibold text-[var(--color-brand)]">
-          Thanks — Jonny will be in touch.
+          Thanks — {site.ownerName} will be in touch.
         </h3>
         <p className="mt-2 text-[var(--color-muted)]">
           You&apos;ll usually hear back within a few hours. In a rush? Send a
@@ -32,16 +33,33 @@ export function EstimateForm() {
         required
         error={state && !state.ok ? state.fieldErrors?.name : undefined}
       />
-      <Field
-        label="Best way to reach you (phone, WhatsApp, or email)"
-        name="contact"
-        required
-        error={state && !state.ok ? state.fieldErrors?.contact : undefined}
-      />
+      <div className="grid sm:grid-cols-2 gap-5">
+        <Field
+          label="Email"
+          name="email"
+          type="email"
+          inputMode="email"
+          autoComplete="email"
+          placeholder="you@example.com"
+          error={state && !state.ok ? state.fieldErrors?.email : undefined}
+        />
+        <Field
+          label="Phone or WhatsApp"
+          name="phone"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          placeholder="(267) 301-0825"
+          error={state && !state.ok ? state.fieldErrors?.phone : undefined}
+        />
+      </div>
+      <p className="-mt-3 text-xs text-[var(--color-muted)]">
+        At least one so {site.ownerName} can reply.
+      </p>
       <Field
         label="Address or neighborhood"
         name="address"
-        hint="Optional — helps Jonny estimate travel"
+        hint={`Optional — helps ${site.ownerName} estimate travel`}
       />
       <Textarea
         label="What needs fixing?"
@@ -68,11 +86,11 @@ export function EstimateForm() {
             <Loader2 className="size-4 animate-spin" /> Sending…
           </>
         ) : (
-          "Send to Jonny"
+          `Send to ${site.ownerName}`
         )}
       </button>
       <p className="text-xs text-[var(--color-muted)]">
-        No spam, no lists. This goes straight to Jonny&apos;s email.
+        No spam, no lists. This goes straight to {site.ownerName}&apos;s email.
       </p>
     </form>
   );
@@ -81,12 +99,20 @@ export function EstimateForm() {
 function Field({
   label,
   name,
+  type = "text",
+  inputMode,
+  autoComplete,
+  placeholder,
   required,
   hint,
   error,
 }: {
   label: string;
   name: string;
+  type?: React.HTMLInputTypeAttribute;
+  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
+  autoComplete?: string;
+  placeholder?: string;
   required?: boolean;
   hint?: string;
   error?: string;
@@ -103,9 +129,13 @@ function Field({
       )}
       <input
         name={name}
-        type="text"
+        type={type}
+        inputMode={inputMode}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
         required={required}
-        className="mt-2 w-full rounded-md border border-[var(--color-border)] px-3 py-2.5 text-base focus:outline-none focus:border-[var(--color-brand)] focus:ring-2 focus:ring-[var(--color-brand)]/20 transition"
+        aria-invalid={error ? true : undefined}
+        className="mt-2 w-full rounded-md border border-[var(--color-border)] px-3 py-2.5 text-base focus:outline-none focus:border-[var(--color-brand)] focus:ring-2 focus:ring-[var(--color-brand)]/20 transition aria-[invalid=true]:border-red-500"
       />
       {error && (
         <span className="block text-xs text-red-700 mt-1">{error}</span>

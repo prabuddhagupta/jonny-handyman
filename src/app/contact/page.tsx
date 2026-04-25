@@ -7,7 +7,7 @@ import { InstagramIcon as Instagram } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Text, WhatsApp, or email Jonny for a free handyman estimate in ${site.primaryCity} and the Main Line.`,
+  description: `Text, WhatsApp, or email ${site.ownerName} for a free handyman estimate in ${site.primaryCity} and the surrounding areas.`,
 };
 
 export default function ContactPage() {
@@ -18,11 +18,11 @@ export default function ContactPage() {
           Contact
         </p>
         <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-brand)] leading-tight">
-          Tell Jonny what needs fixing.
+          Tell {site.ownerName} what needs fixing.
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-[var(--color-muted)]">
-          WhatsApp is the fastest way. Or fill out the form below — Jonny will
-          text or email you back within a few hours.
+          WhatsApp is the fastest way. Or fill out the form below —{" "}
+          {site.ownerName} will text or email you back within a few hours.
         </p>
       </section>
 

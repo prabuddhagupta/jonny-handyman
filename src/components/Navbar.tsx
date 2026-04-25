@@ -5,7 +5,6 @@ import { TruckLogo } from "./icons";
 
 const nav = [
   { href: "/services", label: "Services" },
-  { href: "/gallery", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -22,7 +21,7 @@ export function Navbar() {
           className="flex items-center gap-3 text-[var(--color-brand)]"
           aria-label={`${site.brandName} home`}
         >
-          <TruckLogo className="size-9 shrink-0" />
+          <TruckLogo className="h-10 w-auto shrink-0" />
           <span className="flex flex-col leading-tight">
             <span className="font-semibold text-base sm:text-lg">
               {site.brandName}

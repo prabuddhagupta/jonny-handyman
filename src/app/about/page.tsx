@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { site } from "@/site.config";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Shield, MapPin, Clock } from "lucide-react";
 import { InstagramIcon as Instagram } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "About Jonny",
-  description: `Meet Jonny — your licensed and insured handyman in ${site.primaryCity} and the Main Line.`,
+  title: `About ${site.ownerName}`,
+  description: `Meet ${site.ownerName} — your licensed and insured handyman in ${site.primaryCity} and the surrounding areas.`,
 };
 
 export default function AboutPage() {
@@ -17,17 +18,22 @@ export default function AboutPage() {
           About
         </p>
         <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-brand)] leading-tight">
-          Meet Jonny.
+          Meet {site.ownerName}.
         </h1>
       </section>
 
       <section className="mx-auto max-w-4xl px-4 pb-16">
         <div className="grid md:grid-cols-3 gap-10 items-start">
           <div className="md:col-span-1">
-            <div className="aspect-square rounded-2xl bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-soft)] flex items-center justify-center text-white/50 text-sm p-6 text-center">
-              Jonny&apos;s photo
-              <br />
-              goes here
+            <div className="relative aspect-[5/12] rounded-2xl overflow-hidden bg-[var(--color-surface)] shadow-md ring-1 ring-[var(--color-border)]">
+              <Image
+                src="/john.png"
+                alt={`${site.ownerName}, owner of ${site.brandName}`}
+                fill
+                sizes="(min-width: 768px) 300px, 100vw"
+                className="object-cover object-top"
+                priority
+              />
             </div>
             <a
               href={site.instagramUrl}
@@ -42,10 +48,10 @@ export default function AboutPage() {
 
           <div className="md:col-span-2 space-y-5 text-lg text-[var(--color-ink)] leading-relaxed">
             <p>
-              Jonny runs {site.brandName} — a licensed and insured, one-person
-              operation serving {site.primaryCity} and the Main Line.
-              Bathrooms, kitchens, decks, drywall, tile, doors, and just about
-              every kind of house repair in between.
+              {site.ownerName} runs {site.brandName} — a licensed and insured,
+              one-person operation serving {site.primaryCity} and the
+              surrounding areas. Bathrooms, kitchens, decks, drywall, tile,
+              doors, and just about every kind of house repair in between.
             </p>
             <p>
               The truck you&apos;ve seen around the neighborhood (white Ford
@@ -55,16 +61,17 @@ export default function AboutPage() {
               five.
             </p>
             <p>
-              He covers {site.primaryCity} and the Main Line — Wayne, Bryn
-              Mawr, Ardmore, Radnor, and the neighborhoods in between. Local
-              work only. He&apos;s not the guy who drives an hour to a job
-              and charges you for the truck.
+              He covers {site.primaryCity} and surrounding neighborhoods —
+              Bala Cynwyd, Ardmore, Bryn Mawr, Havertown, Conshohocken, King
+              of Prussia, and everywhere in between. Local work only. He&apos;s
+              not the guy who drives an hour to a job and charges you for the
+              truck.
             </p>
             <p>
-              <strong>A note on communication:</strong> Jonny is fastest over
-              WhatsApp and text ({site.smsNumber}). If you call, leave a
-              voicemail and he&apos;ll get back to you. For estimates, a short
-              description and a photo go a long way.
+              <strong>A note on communication:</strong> {site.ownerName} is
+              fastest over WhatsApp and text ({site.smsNumber}). If you call,
+              leave a voicemail and he&apos;ll get back to you. For estimates,
+              a short description and a photo go a long way.
             </p>
           </div>
         </div>
@@ -73,11 +80,15 @@ export default function AboutPage() {
       <section className="bg-[var(--color-surface)] border-y border-[var(--color-border)]">
         <div className="mx-auto max-w-4xl px-4 py-14">
           <div className="grid sm:grid-cols-3 gap-6">
-            <Stat icon={Shield} title="Licensed & insured" body="Your home is covered." />
+            <Stat
+              icon={Shield}
+              title={site.license}
+              body={`Serving the city since ${site.establishedYear}.`}
+            />
             <Stat
               icon={MapPin}
-              title="Local to KoP"
-              body={`${site.primaryCity}, ${site.state}`}
+              title={`Local to ${site.primaryCity}`}
+              body={`${site.primaryCity}, ${site.state} & surrounding areas`}
             />
             <Stat
               icon={Clock}

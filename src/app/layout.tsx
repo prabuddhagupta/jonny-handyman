@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     default: `${site.brandName} — ${site.tagline}`,
     template: `%s · ${site.brandName}`,
   },
-  description: `Honest home repairs and small remodels in ${site.primaryCity} and the Main Line. Licensed, insured, and quick to respond on WhatsApp.`,
+  description: `Honest home repairs and small remodels in ${site.primaryCity} and the surrounding areas. Licensed, insured, and quick to respond on WhatsApp.`,
   openGraph: {
     title: `${site.brandName} — ${site.tagline}`,
-    description: `Honest home repairs in ${site.primaryCity} and the Main Line.`,
+    description: `Honest home repairs in ${site.primaryCity} and surrounding areas.`,
     url: `https://${site.domain}`,
     siteName: site.brandName,
     locale: "en_US",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${site.brandName} — ${site.tagline}`,
-    description: `Honest home repairs in ${site.primaryCity} and the Main Line.`,
+    description: `Honest home repairs in ${site.primaryCity} and surrounding areas.`,
   },
   robots: { index: true, follow: true },
 };
@@ -47,7 +47,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-[var(--color-ink)]">
+      <body
+        className="min-h-full flex flex-col bg-white text-[var(--color-ink)]"
+        suppressHydrationWarning
+      >
         <LocalBusinessSchema />
         <Navbar />
         <main className="flex-1">{children}</main>

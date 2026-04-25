@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-10 grid gap-8 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-3 text-[var(--color-brand)]">
-            <TruckLogo className="size-8" />
+            <TruckLogo className="h-9 w-auto" />
             <p className="font-semibold text-lg">{site.brandName}</p>
           </div>
           <p className="mt-2 text-sm text-[var(--color-muted)]">
@@ -31,7 +31,7 @@ export function Footer() {
 
         <div>
           <p className="font-medium text-sm text-[var(--color-ink)]">
-            Follow Jonny&apos;s work
+            Follow {site.ownerName}&apos;s work
           </p>
           <a
             href={site.instagramUrl}
@@ -51,7 +51,7 @@ export function Footer() {
       <div className="border-t border-[var(--color-border)]">
         <div className="mx-auto max-w-6xl px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-[var(--color-muted)]">
           <p>
-            {site.legalName} · © {year}
+            {site.legalName} · {site.license} · © {year}
           </p>
           <div className="flex gap-4">
             <Link href="/contact" className="hover:underline">
