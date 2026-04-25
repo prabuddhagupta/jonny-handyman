@@ -1,4 +1,4 @@
-# Jonny Handyman — VSA Infinity LLC
+# John's Handyman House Repair — VSA Infinity LLC
 
 Marketing site for Jonny's handyman business. Serves King of Prussia and the
 Main Line (PA).

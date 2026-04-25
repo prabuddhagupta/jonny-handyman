@@ -1,14 +1,14 @@
 import Image from "next/image";
 
 /**
- * The real Handyman House Repair logo (house silhouette with crossed tools, EST. 1992).
+ * The real John's Handyman House Repair logo (house silhouette with crossed tools, EST. 1992).
  * File lives at /public/logo.png.
  */
 export function TruckLogo({ className }: { className?: string }) {
   return (
     <Image
       src="/logo.png"
-      alt="Handyman House Repair logo"
+      alt="John's Handyman House Repair logo"
       width={602}
       height={502}
       priority

@@ -4,9 +4,10 @@
  */
 
 export const site = {
-  /** Public brand — matches the logo and truck */
-  brandName: "Handyman House Repair",
-  brandShort: "HHR",
+  /** Public brand — owner's name + truck lettering. Google Business Profile
+   *  business name is exactly this. Changing this cascades via site.brandName
+   *  into nav, footer, metadata, JSON-LD, and Resend email from-addresses. */
+  brandName: "John's Handyman House Repair",
   /** Person behind the business — surfaced on About + opener */
   ownerName: "John",
   tagline: "Bathroom, kitchen, and deck remodels across Philadelphia",
