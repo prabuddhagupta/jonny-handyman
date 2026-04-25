@@ -1,0 +1,190 @@
+# Google Business Profile setup — John's Handyman House Repair
+
+A step-by-step to execute on **business.google.com**. Every field is
+pre-filled from `src/site.config.ts`. Most likely time to verification
+is 5 business days; worst case is ~3 weeks.
+
+## Before you start
+
+- **Search for an existing listing first.** Google "John's Handyman
+  House Repair Philadelphia" and "Handyman House Repair Philadelphia"
+  on Google Maps. The business has been operating since 1992, so an
+  unclaimed listing may already exist. If one appears, click **Claim
+  this business** instead of creating a new one — duplicate listings
+  get flagged, merged, or suspended.
+- You need a Google account. Use one you'll keep — this account owns the
+  profile.
+- Have the truck, tools, and any PA Home Improvement Contractor license
+  / insurance paperwork accessible — video verification likely needs
+  all of them in one clip.
+
+## Fields to paste
+
+| Field | Value |
+|---|---|
+| Business name | `John's Handyman House Repair` ⚠️ see warning below |
+| Primary category | `Handyman` |
+| Business type | **Service business** (no storefront) |
+| Service area | Philadelphia, Bala Cynwyd, Ardmore, Bryn Mawr, Narberth, Wynnewood, Havertown, Upper Darby, Conshohocken, Gladwyne, Cheltenham, King of Prussia |
+| Phone | `(267) 301-0825` |
+| Website | `https://handymanhouserepair.com` |
+| Email | `Sdzhangar1@gmail.com` |
+| Opening date | January 1992 (approximate is fine — Google cares about the year) |
+
+> **⚠️ Do not change the business name.** The "John's" prefix is
+> deliberate. Google's naming guidelines reject names that look like
+> keyword phrases — "Handyman House Repair" alone would qualify and
+> get the listing suspended. Do not shorten, abbreviate, or add city
+> names. The exact value above is what survives review.
+
+### Secondary categories (pick up to 9)
+
+Each secondary category expands which search queries match your
+profile. Add all nine:
+
+1. Bathroom remodeler
+2. Kitchen remodeler
+3. Deck builder
+4. Drywall contractor
+5. Painter
+6. Flooring contractor
+7. Tile contractor
+8. Carpenter
+9. General contractor — *add this one last; if Google questions the
+   listing during review, remove it first to reduce friction.*
+
+### Hours
+
+- Monday – Friday: 8:00 AM – 6:00 PM
+- Saturday: 9:00 AM – 3:00 PM
+- Sunday: Closed
+
+### Description (paste verbatim)
+
+> John's Handyman House Repair serves Philadelphia and the Main Line
+> — Bala Cynwyd, Ardmore, Bryn Mawr, Havertown, Conshohocken, King of
+> Prussia and beyond. Founded in 1992 by John, a PA-licensed Home
+> Improvement Contractor, we handle bathroom and kitchen remodels, deck
+> builds, drywall, painting, tile, flooring, doors, and the full range
+> of everyday home repair. Free estimates, no surprise fees, and the
+> fastest way to reach John is WhatsApp at (267) 301-0825 — text a
+> photo of what needs fixing and you'll hear back within a few hours.
+
+### Services
+
+In the "Services" section of GBP, add one entry per row:
+
+- Bathroom remodels
+- Kitchen remodels
+- Decks
+- Drywall & painting
+- Faucets & fixtures
+- Doors & locks
+- Mounting & assembly
+- Flooring & tile
+
+## Photos
+
+Google asks for a logo, a cover photo, and additional photos. Do this
+minimum:
+
+- **Logo:** export `public/logo.png` (or use directly). Crop to square
+  if the GBP uploader requires it.
+- **Cover photo:** one good landscape photo of the truck showing the
+  "HANDYMAN HOUSE REPAIR" lettering.
+- **Additional (target 8):** pick the strongest before/after work
+  samples from the `@handy_soluti0ns` Instagram
+  (https://www.instagram.com/handy_soluti0ns/). Prefer bathroom,
+  kitchen, and deck shots — those are the money-making categories.
+
+## Verification — video
+
+Service-area businesses almost always get routed to video verification
+now (postcard is rare). Google asks for a **single continuous,
+unedited** clip, 30–120 seconds, showing:
+
+1. **Truck exterior** — the "HANDYMAN HOUSE REPAIR" lettering clearly
+   visible.
+2. **Truck interior** — open the back / doors, show tools and supplies.
+3. **An in-progress or recently-finished job site** — any real work.
+4. **Business paperwork** — PA Home Improvement Contractor license
+   and insurance certificate, held up to the camera, legible.
+
+Tips:
+- One continuous take. Don't cut. Don't add music. Don't zoom if you
+  can walk.
+- Phone in landscape.
+- Good daylight.
+- Narrate casually while walking — "this is the truck, this is John,
+  here's the license, here's the bathroom we're finishing up." Sounds
+  human, helps Google confirm you're real.
+
+### If verification fails
+
+Rejections are common and the rejection reason is usually vague
+("could not verify your business"). Don't panic.
+
+1. **Re-shoot.** Make sure all four required elements (truck exterior
+   lettering, truck interior with tools, an actual job site, and the
+   PA HIC license + insurance paperwork) are clearly visible **in the
+   first 30 seconds** of the new clip — Google's reviewers often only
+   watch the opening seconds.
+2. **Submit again.** Same flow as the first attempt.
+3. **Two rejections?** Go to https://support.google.com/business and
+   use the **Contact us** flow to request human review. Provide the PA
+   HIC license number and a photo of the truck's exterior lettering.
+4. **Last resort.** Postcard verification still exists for some
+   service-area regions. Ask in the support flow whether it's
+   available for this listing.
+
+## Once verified
+
+1. Open the GBP listing in a browser (while signed in to the owning
+   account).
+2. Find the Place ID. Search Google for **"Place ID Finder"** and
+   open the first result (it's a Google-maintained tool that moves
+   URLs occasionally). Paste the business name, click the pin on the
+   map, copy the ID.
+3. Open `src/site.config.ts`, paste the ID into the `googlePlaceId`
+   field.
+4. Commit and push. Vercel auto-deploys.
+
+**What activates:** a "Leave a review on Google" link in the site
+footer; a review nudge in the estimate-form success state; the
+WhatsApp follow-up template below now has a working URL to send.
+
+## WhatsApp follow-up template
+
+Paste after every finished job. Once `handymanhouserepair.com`
+registers (README to-do), the URL is shorter / cleaner. Until then,
+use the full Google review URL directly.
+
+**Where to find the URL:** once the Place ID is live in
+`site.config.ts`, the link is in the site footer ("Leave a review on
+Google"). You can also build it manually:
+`https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID`
+
+```
+Thanks for having me out — hope it looks great. If you've got 30
+seconds, a Google review means a lot to a small business:
+
+[paste Google review URL]
+
+— John
+```
+
+## Out-of-code follow-ups
+
+These don't touch the code but matter for local SEO consistency:
+
+- **Claim and rename the Yelp listing.**
+  `yelp.com/biz/johny-handyman-philadelphia` is still under the
+  pre-pivot name "Johny Handyman". Claim it (free) and rename to
+  "John's Handyman House Repair".
+- **Buy `handymanhouserepair.com`.** Still in the README to-dos.
+  Namecheap or Porkbun, ~$12/year. The site already references this
+  domain in metadata and JSON-LD.
+- **Add 3 GBP Posts after verification.** The Posts feature on the
+  dashboard is like social media for your profile — use it for
+  seasonal reminders ("deck season is here") and recent work
+  highlights.
