@@ -31,7 +31,7 @@ export function EstimateForm() {
               rel="noopener noreferrer"
               className="font-medium text-[var(--color-brand)] hover:underline"
             >
-              Leave a Google review →
+              Leave a review on Google →
             </a>
           </p>
         )}

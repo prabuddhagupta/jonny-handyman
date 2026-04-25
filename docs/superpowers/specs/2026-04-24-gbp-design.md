@@ -44,8 +44,11 @@ business.google.com. Every field pre-filled from `site.config.ts`.
 - **Primary category:** `Handyman`
 - **Secondary categories (up to 9):** `Bathroom remodeler`,
   `Kitchen remodeler`, `Deck builder`, `Drywall contractor`, `Painter`,
-  `Flooring contractor`, `Tile contractor`, `General contractor`,
-  `Door supplier`
+  `Flooring contractor`, `Tile contractor`, `Carpenter`,
+  `General contractor`. (Originally drafted as `Door supplier` —
+  corrected during Task 5 review since "Door supplier" is for retail,
+  not installers; `Carpenter` covers John's actual door-and-mounting
+  work.)
 - **Service area:** the 12 entries from `site.config.ts` → `serviceArea`
   (Philadelphia, Bala Cynwyd, Ardmore, Bryn Mawr, Narberth, Wynnewood,
   Havertown, Upper Darby, Conshohocken, Gladwyne, Cheltenham, King of

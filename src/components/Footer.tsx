@@ -4,6 +4,7 @@ import { InstagramIcon as Instagram, TruckLogo } from "./icons";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const review = reviewLink();
   return (
     <footer className="mt-20 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       <div className="mx-auto max-w-6xl px-4 py-10 grid gap-8 md:grid-cols-3">
@@ -45,9 +46,9 @@ export function Footer() {
           <p className="mt-4 text-xs text-[var(--color-muted)]">
             Yes, with a zero — real account.
           </p>
-          {reviewLink() && (
+          {review && (
             <a
-              href={reviewLink()!}
+              href={review}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block text-sm text-[var(--color-brand)] hover:underline"

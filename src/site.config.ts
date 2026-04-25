@@ -67,10 +67,9 @@ export const site = {
     "Hi John, I'd like a free estimate. Here's what I need:\n\n- Address:\n- What the job is (remodel? repair?):\n- Photo (attach if possible):",
 
   /** Google Business Profile Place ID. Empty until GBP verifies. Once
-   *  verified, look it up at
-   *  https://developers.google.com/maps/documentation/places/web-service/place-id
-   *  and paste here — no other code changes needed to activate review
-   *  CTAs site-wide. */
+   *  verified, search Google for "Place ID Finder", look up the
+   *  business, and paste the ID here — no other code changes needed to
+   *  activate review CTAs site-wide. See `docs/gbp-setup.md`. */
   googlePlaceId: "" as string,
 } as const;
 
