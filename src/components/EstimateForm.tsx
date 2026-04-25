@@ -31,6 +31,7 @@ export function EstimateForm() {
         label="Your name"
         name="name"
         required
+        defaultValue={state && !state.ok ? state.values?.name : undefined}
         error={state && !state.ok ? state.fieldErrors?.name : undefined}
       />
       <div className="grid sm:grid-cols-2 gap-5">
@@ -41,6 +42,7 @@ export function EstimateForm() {
           inputMode="email"
           autoComplete="email"
           placeholder="you@example.com"
+          defaultValue={state && !state.ok ? state.values?.email : undefined}
           error={state && !state.ok ? state.fieldErrors?.email : undefined}
         />
         <Field
@@ -50,6 +52,7 @@ export function EstimateForm() {
           inputMode="tel"
           autoComplete="tel"
           placeholder="(267) 301-0825"
+          defaultValue={state && !state.ok ? state.values?.phone : undefined}
           error={state && !state.ok ? state.fieldErrors?.phone : undefined}
         />
       </div>
@@ -60,12 +63,14 @@ export function EstimateForm() {
         label="Address or neighborhood"
         name="address"
         hint={`Optional — helps ${site.ownerName} estimate travel`}
+        defaultValue={state && !state.ok ? state.values?.address : undefined}
       />
       <Textarea
         label="What needs fixing?"
         name="description"
         required
         hint="A few details go a long way. Photos help even more — send them by WhatsApp after."
+        defaultValue={state && !state.ok ? state.values?.description : undefined}
         error={state && !state.ok ? state.fieldErrors?.description : undefined}
       />
 
@@ -106,6 +111,7 @@ function Field({
   required,
   hint,
   error,
+  defaultValue,
 }: {
   label: string;
   name: string;
@@ -116,6 +122,7 @@ function Field({
   required?: boolean;
   hint?: string;
   error?: string;
+  defaultValue?: string;
 }) {
   return (
     <label className="block">
@@ -134,6 +141,7 @@ function Field({
         autoComplete={autoComplete}
         placeholder={placeholder}
         required={required}
+        defaultValue={defaultValue}
         aria-invalid={error ? true : undefined}
         className="mt-2 w-full rounded-md border border-[var(--color-border)] px-3 py-2.5 text-base focus:outline-none focus:border-[var(--color-brand)] focus:ring-2 focus:ring-[var(--color-brand)]/20 transition aria-[invalid=true]:border-red-500"
       />
@@ -150,12 +158,14 @@ function Textarea({
   required,
   hint,
   error,
+  defaultValue,
 }: {
   label: string;
   name: string;
   required?: boolean;
   hint?: string;
   error?: string;
+  defaultValue?: string;
 }) {
   return (
     <label className="block">
@@ -171,7 +181,10 @@ function Textarea({
         name={name}
         required={required}
         rows={5}
-        className="mt-2 w-full rounded-md border border-[var(--color-border)] px-3 py-2.5 text-base focus:outline-none focus:border-[var(--color-brand)] focus:ring-2 focus:ring-[var(--color-brand)]/20 transition"
+        minLength={10}
+        defaultValue={defaultValue}
+        aria-invalid={error ? true : undefined}
+        className="mt-2 w-full rounded-md border border-[var(--color-border)] px-3 py-2.5 text-base focus:outline-none focus:border-[var(--color-brand)] focus:ring-2 focus:ring-[var(--color-brand)]/20 transition aria-[invalid=true]:border-red-500"
       />
       {error && (
         <span className="block text-xs text-red-700 mt-1">{error}</span>

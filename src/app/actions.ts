@@ -26,9 +26,22 @@ const EstimateSchema = z
 
 export type EstimateInput = z.infer<typeof EstimateSchema>;
 
+export type EstimateValues = {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  description: string;
+};
+
 export type EstimateResult =
   | { ok: true }
-  | { ok: false; error: string; fieldErrors?: Record<string, string> };
+  | {
+      ok: false;
+      error: string;
+      fieldErrors?: Record<string, string>;
+      values?: EstimateValues;
+    };
 
 export async function submitEstimate(
   _prevState: EstimateResult | null,
@@ -51,7 +64,12 @@ export async function submitEstimate(
         fieldErrors[field] = issue.message;
       }
     }
-    return { ok: false, error: "Please fix the fields below.", fieldErrors };
+    return {
+      ok: false,
+      error: "Please fix the fields below.",
+      fieldErrors,
+      values: raw,
+    };
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -60,6 +78,7 @@ export async function submitEstimate(
     return {
       ok: false,
       error: `Sorry, our form isn't connected yet. Please WhatsApp ${site.ownerName} directly.`,
+      values: raw,
     };
   }
 
@@ -91,6 +110,7 @@ export async function submitEstimate(
     return {
       ok: false,
       error: `Couldn't send the request. Please WhatsApp ${site.ownerName} directly.`,
+      values: raw,
     };
   }
 }
