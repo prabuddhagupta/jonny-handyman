@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site } from "@/site.config";
+import { site, reviewLink } from "@/site.config";
 import { InstagramIcon as Instagram, TruckLogo } from "./icons";
 
 export function Footer() {
@@ -45,6 +45,16 @@ export function Footer() {
           <p className="mt-4 text-xs text-[var(--color-muted)]">
             Yes, with a zero — real account.
           </p>
+          {reviewLink() && (
+            <a
+              href={reviewLink()!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block text-sm text-[var(--color-brand)] hover:underline"
+            >
+              Leave a review on Google →
+            </a>
+          )}
         </div>
       </div>
 
