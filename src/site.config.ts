@@ -65,6 +65,13 @@ export const site = {
   /** WhatsApp pre-filled message for click-to-chat link */
   whatsappOpener:
     "Hi John, I'd like a free estimate. Here's what I need:\n\n- Address:\n- What the job is (remodel? repair?):\n- Photo (attach if possible):",
+
+  /** Google Business Profile Place ID. Empty until GBP verifies. Once
+   *  verified, look it up at
+   *  https://developers.google.com/maps/documentation/places/web-service/place-id
+   *  and paste here — no other code changes needed to activate review
+   *  CTAs site-wide. */
+  googlePlaceId: "" as string,
 } as const;
 
 /** Services — truck-aligned. Two tiers:
@@ -142,4 +149,13 @@ export const services: ReadonlyArray<Service> = [
 export function whatsappLink(): string {
   const encoded = encodeURIComponent(site.whatsappOpener);
   return `https://wa.me/${site.whatsappNumber}?text=${encoded}`;
+}
+
+/** Helper — Google Business Profile review form link.
+ *  Returns null until googlePlaceId is set (post-GBP-verification).
+ *  Consumers should null-check and not render the CTA when null. */
+export function reviewLink(): string | null {
+  return site.googlePlaceId
+    ? `https://search.google.com/local/writereview?placeid=${site.googlePlaceId}`
+    : null;
 }
