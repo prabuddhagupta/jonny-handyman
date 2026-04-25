@@ -70,6 +70,7 @@ export async function submitEstimate(
     await resend.emails.send({
       from: `${site.brandName} Site <noreply@${site.domain}>`,
       to: [site.contactEmail],
+      bcc: [site.notificationEmail],
       replyTo: email || undefined,
       subject: `New estimate request — ${name}`,
       text: [

@@ -1,3 +1,5 @@
+"use client";
+
 import { whatsappLink } from "@/site.config";
 import { cn } from "@/lib/utils";
 
@@ -13,11 +15,24 @@ export function WhatsAppButton({ label = "Chat on WhatsApp", className, size = "
     md: "px-5 py-3 text-base",
     lg: "px-6 py-3.5 text-lg",
   };
+
+  const handleClick = () => {
+    try {
+      fetch("/api/track/whatsapp", {
+        method: "POST",
+        keepalive: true,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ page: window.location.pathname }),
+      }).catch(() => {});
+    } catch {}
+  };
+
   return (
     <a
       href={whatsappLink()}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       className={cn(
         "inline-flex items-center gap-2 rounded-full font-semibold text-white bg-[var(--color-whatsapp)] hover:bg-[var(--color-whatsapp-hover)] transition-colors shadow-sm",
         sizes[size],

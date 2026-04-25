@@ -44,6 +44,8 @@ export const site = {
   smsNumber: "(267) 301-0825",
   /** Email that receives estimate form submissions. */
   contactEmail: "Sdzhangar1@gmail.com",
+  /** Owner/dev notification inbox — BCC'd on form submissions, receives WhatsApp-click daily digest. */
+  notificationEmail: "prabuddha@gmail.com",
 
   /** Instagram — existing brand */
   instagramHandle: "handy_soluti0ns",
