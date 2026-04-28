@@ -92,9 +92,6 @@ vercel --prod       # production deploy
 4. **Confirm license type** — decides which services stay on `/services`.
    Electrical and plumbing without licenses = legal liability; cut if
    needed.
-5. **Buy a domain** — `handymanhouserepair.com` (already referenced in
-   `site.config.ts` and the `LocalBusiness` JSON-LD). Namecheap or
-   Porkbun, ~$12/year.
 
 ---
 
