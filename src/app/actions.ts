@@ -43,10 +43,31 @@ export type EstimateResult =
       values?: EstimateValues;
     };
 
+const URL_PATTERN = /https?:\/\/|www\./gi;
+
+function looksLikeSpam(raw: {
+  name: string;
+  address: string;
+  description: string;
+}): boolean {
+  if (URL_PATTERN.test(raw.name)) return true;
+  URL_PATTERN.lastIndex = 0;
+  if (URL_PATTERN.test(raw.address)) return true;
+  URL_PATTERN.lastIndex = 0;
+  const descUrls = raw.description.match(URL_PATTERN)?.length ?? 0;
+  return descUrls >= 2;
+}
+
 export async function submitEstimate(
   _prevState: EstimateResult | null,
   formData: FormData
 ): Promise<EstimateResult> {
+  // Honeypot — real users skip the hidden "website" field; bots fill it.
+  // Silent success so the bot doesn't retry with a different shape.
+  if (String(formData.get("website") ?? "").trim()) {
+    return { ok: true };
+  }
+
   const raw = {
     name: String(formData.get("name") ?? "").trim(),
     email: String(formData.get("email") ?? "").trim(),
@@ -54,6 +75,10 @@ export async function submitEstimate(
     address: String(formData.get("address") ?? "").trim(),
     description: String(formData.get("description") ?? "").trim(),
   };
+
+  if (looksLikeSpam(raw)) {
+    return { ok: true };
+  }
 
   const parsed = EstimateSchema.safeParse(raw);
   if (!parsed.success) {

@@ -38,6 +38,22 @@ export function EstimateForm() {
 
   return (
     <form action={formAction} className="space-y-5">
+      {/* Honeypot — hidden from real users, irresistible to bots. */}
+      <div
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+      >
+        <label>
+          Website (leave blank)
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            defaultValue=""
+          />
+        </label>
+      </div>
       <Field
         label="Your name"
         name="name"
