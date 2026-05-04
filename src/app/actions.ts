@@ -45,6 +45,31 @@ export type EstimateResult =
 
 const URL_PATTERN = /https?:\/\/|www\./gi;
 
+// Outreach-pitch vocabulary. Real customers describing a remodel never
+// use this language; SEO/marketing spammers can't help themselves. 2+
+// hits in the description → silent drop.
+const PITCH_PATTERNS: RegExp[] = [
+  /\bSEO\b/i,
+  /\bAEO\b/i,
+  /\bSERP\b/i,
+  /\bbacklinks?\b/i,
+  /voice search/i,
+  /AI (platform|search|visibility|tools?)/i,
+  /\b(ChatGPT|Gemini|Perplexity)\b/i,
+  /digital marketing/i,
+  /price list/i,
+  /(grow|boost|increase) (your )?(business|traffic|visibility|reach|leads|sales|revenue|ranking)/i,
+  /lead generation/i,
+  /quote (and|&) price/i,
+];
+
+function pitchScore(text: string): number {
+  return PITCH_PATTERNS.reduce(
+    (acc, re) => acc + (re.test(text) ? 1 : 0),
+    0
+  );
+}
+
 function looksLikeSpam(raw: {
   name: string;
   address: string;
@@ -55,7 +80,8 @@ function looksLikeSpam(raw: {
   if (URL_PATTERN.test(raw.address)) return true;
   URL_PATTERN.lastIndex = 0;
   const descUrls = raw.description.match(URL_PATTERN)?.length ?? 0;
-  return descUrls >= 2;
+  if (descUrls >= 2) return true;
+  return pitchScore(raw.description) >= 2;
 }
 
 export async function submitEstimate(
