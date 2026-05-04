@@ -73,7 +73,7 @@ export default function ServicesPage() {
             Everyday repairs
           </h2>
           <p className="text-sm text-[var(--color-muted)]">
-            One person, one call. No crew, no runaround.
+            One call to {site.ownerName}. No middlemen, no runaround.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">

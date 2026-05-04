@@ -112,8 +112,8 @@ export default async function ServicePage({ params }: Props) {
           />
           <Trust
             icon={MessageSquareText}
-            title="One person, start to finish"
-            body={`${site.ownerName} runs every job himself.`}
+            title="Fast WhatsApp reply"
+            body="Usually within a few hours."
           />
           <Trust
             icon={MapPin}

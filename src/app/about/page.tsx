@@ -49,16 +49,16 @@ export default function AboutPage() {
           <div className="md:col-span-2 space-y-5 text-lg text-[var(--color-ink)] leading-relaxed">
             <p>
               {site.ownerName} runs {site.brandName} — a licensed and insured,
-              one-person operation serving {site.primaryCity} and the
+              owner-run business serving {site.primaryCity} and the
               surrounding areas. Bathrooms, kitchens, decks, drywall, tile,
               doors, and just about every kind of house repair in between.
             </p>
             <p>
               The truck you&apos;ve seen around the neighborhood (white Ford
               Transit, &quot;REMODELING - BATHROOMS · KITCHENS - DECKS&quot;
-              on the side) is his. One person shows up — no rotating crew, no
-              subs — so the quality you see on day one is what you get on day
-              five.
+              on the side) is his. {site.ownerName} runs every job from
+              estimate through finish, so the quality you see on day one is
+              what you get on day five.
             </p>
             <p>
               He covers {site.primaryCity} and surrounding neighborhoods —
