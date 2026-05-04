@@ -118,7 +118,7 @@ export default function Home() {
               return (
                 <Link
                   key={s.slug}
-                  href="/services"
+                  href={`/services/${s.slug}`}
                   className="group p-7 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-brand)] hover:shadow-lg transition bg-white"
                 >
                   <div className="size-12 rounded-lg bg-[var(--color-brand)] flex items-center justify-center">
@@ -156,7 +156,7 @@ export default function Home() {
               return (
                 <Link
                   key={s.slug}
-                  href="/services"
+                  href={`/services/${s.slug}`}
                   className="group p-5 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-brand)] hover:shadow-md transition bg-white"
                 >
                   <Icon className="size-6 text-[var(--color-accent)]" />

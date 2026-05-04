@@ -41,9 +41,10 @@ export default function ServicesPage() {
         </div>
         <div className="grid md:grid-cols-3 gap-5">
           {remodels.map((s) => (
-            <article
+            <Link
               key={s.slug}
-              className="p-7 rounded-xl border-2 border-[var(--color-brand)]/20 bg-white hover:border-[var(--color-brand)] transition"
+              href={`/services/${s.slug}`}
+              className="group p-7 rounded-xl border-2 border-[var(--color-brand)]/20 bg-white hover:border-[var(--color-brand)] hover:shadow-lg transition"
             >
               <h3 className="text-xl font-semibold text-[var(--color-brand)]">
                 {s.title}
@@ -57,7 +58,10 @@ export default function ServicesPage() {
                   <span>{s.note}</span>
                 </p>
               )}
-            </article>
+              <p className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-brand)] group-hover:underline">
+                Learn more <ArrowRight className="size-4" />
+              </p>
+            </Link>
           ))}
         </div>
       </section>
@@ -74,11 +78,12 @@ export default function ServicesPage() {
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {repairs.map((s) => (
-            <article
+            <Link
               key={s.slug}
-              className="p-6 rounded-xl border border-[var(--color-border)] bg-white"
+              href={`/services/${s.slug}`}
+              className="group p-6 rounded-xl border border-[var(--color-border)] bg-white hover:border-[var(--color-brand)] hover:shadow-md transition"
             >
-              <h3 className="font-semibold text-[var(--color-brand)]">
+              <h3 className="font-semibold text-[var(--color-brand)] group-hover:underline">
                 {s.title}
               </h3>
               <p className="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
@@ -90,7 +95,7 @@ export default function ServicesPage() {
                   <span>{s.note}</span>
                 </p>
               )}
-            </article>
+            </Link>
           ))}
         </div>
 
