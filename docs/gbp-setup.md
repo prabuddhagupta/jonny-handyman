@@ -152,95 +152,11 @@ WhatsApp follow-up template below has a working URL to send.
 
 ## Distribution playbook
 
-**The link clients should see is `handymanhouserepair.com/review`.**
-It 307-redirects to the Google review composer for John's Handyman
-House Repair. Short enough to dictate over the phone, fits on a
-business card, encodes cleanly into a QR code, and gives us click
-visibility through Vercel access logs.
-
-A printable QR code lives at `handymanhouserepair.com/review/qr` —
-right-click → "Save Image" to drop into a print job.
-
-### Verbal ask (at job completion)
-
-One sentence John can memorize and use every time:
-
-> "If you're happy with how it turned out, a quick Google review
-> means a lot. You can scan this card or go to handymanhouserepair
-> dot com slash review."
-
-### SMS quick-reply (save in Messages → Settings → Text Replacement)
-
-```
-Thanks for having me out today. If you've got 30 seconds,
-a Google review means a lot to a small shop:
-https://handymanhouserepair.com/review — John
-```
-
-### WhatsApp follow-up template
-
-Paste after every finished job:
-
-```
-Thanks for having me out — hope it looks great. If you've got 30
-seconds, a Google review means a lot to a small business:
-
-https://handymanhouserepair.com/review
-
-— John
-```
-
-### Email signature
-
-Add to John's Gmail signature (Settings → General → Signature):
-
-> John · John's Handyman House Repair · (267) 301-0825
-> handymanhouserepair.com · Leave a review: handymanhouserepair.com/review
-
-### Leave-behind card (print spec)
-
-Standard 3.5″ × 2″ business card, both sides. Send to a printer (e.g.
-Vistaprint, MOO, Got Print). Front/back layout:
-
-```
-─── FRONT ─────────────────────────────────
-  [TruckLogo, brand color]
-
-  John's Handyman House Repair
-  Bathroom · Kitchen · Deck · Repair
-
-  John — (267) 301-0825
-  handymanhouserepair.com
-───────────────────────────────────────────
-
-─── BACK ──────────────────────────────────
-  Happy with the work?
-  Leave a quick Google review:
-
-       [QR CODE — 1.25" square,
-        encodes /review]
-
-  handymanhouserepair.com/review
-───────────────────────────────────────────
-```
-
-Print on uncoated stock so the QR scans reliably. Black on white for
-the QR — colored or photo backgrounds tank scan rates on older phones.
-
-### Where to put the QR
-
-In rough order of conversion impact:
-
-1. **Leave-behind sticker / placard** — placed on the new vanity,
-   inside the kitchen cabinet, on the deck post. Customer sees it for
-   weeks. Highest reach per unit cost.
-2. **Business card back** — handed out at every estimate visit.
-3. **Final invoice footer** — top-of-mind exactly when they're paying
-   and the work is fresh.
-4. **Truck door magnet** — passive, but every parked-truck minute is
-   free advertising in the neighborhood.
-5. **Yard sign while job is active** — "Currently being remodeled by
-   John's Handyman House Repair · Leave a review when done · [QR]".
+The customer-facing distribution playbook (verbal asks, SMS/WhatsApp
+templates, email signature, business-card spec, QR placement) lives
+at **[`docs/playbook.md`](./playbook.md)** and is also rendered for
+John at **`handymanhouserepair.com/playbook`** (hidden from search
+engines; share the URL directly).
 
 ## Out-of-code follow-ups
 
