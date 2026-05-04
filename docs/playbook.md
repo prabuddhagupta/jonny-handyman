@@ -9,8 +9,34 @@ It opens straight to the Google review composer for John's Handyman
 House Repair. Short enough to dictate over the phone, fits on a
 business card, encodes cleanly into a QR code.
 
-A printable QR code lives at `handymanhouserepair.com/review/qr` —
-right-click → "Save Image" to drop into a print job.
+## The QR code
+
+This is the QR. Long-press on your phone (or right-click on a
+computer) and pick **"Save image"** to download.
+
+![QR code for handymanhouserepair.com/review](/review/qr)
+
+Need a bigger version for a truck magnet or yard sign? Use
+**[`/review/qr?size=1600`](/review/qr?size=1600)** for a 5–6″ print,
+or **[`/review/qr?size=2000`](/review/qr?size=2000)** for anything
+larger. The cap is 2000px.
+
+### Where to print
+
+Upload the saved PNG along with your card design.
+
+- **Business cards:** [Vistaprint](https://vistaprint.com),
+  [MOO](https://moo.com), [Got Print](https://gotprint.com).
+  $20–40 for 250 cards. Pick **uncoated stock** — coated/glossy can
+  bounce phone-camera scans.
+- **Vinyl stickers / leave-behinds:** [Sticker Mule](https://stickermule.com),
+  [StickerYou](https://stickeryou.com). 50 die-cut stickers at 3″
+  is ~$50.
+- **Truck magnet:** [BuildASign](https://buildasign.com) or any
+  local sign shop. 12″ × 6″ magnetic panel ≈ $20.
+
+Always print the QR **black on white**. Colored or photo backgrounds
+tank scan rates on older phones.
 
 ## Verbal ask (at job completion)
 
