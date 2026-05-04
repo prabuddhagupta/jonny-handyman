@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, services } from "@/site.config";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { GoogleRating } from "@/components/GoogleRating";
 import { TruckLogo } from "@/components/icons";
 import {
   CheckCircle2,
@@ -57,6 +58,7 @@ export default function Home() {
                 can actually trust to do the work right — from a full bathroom
                 remodel to a tricky drywall patch.
               </p>
+              <GoogleRating className="mt-6" />
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <WhatsAppButton size="lg" label="Chat on WhatsApp" />
                 <Link

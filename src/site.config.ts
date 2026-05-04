@@ -66,11 +66,18 @@ export const site = {
   whatsappOpener:
     "Hi John, I'd like a free estimate. Here's what I need:\n\n- Address:\n- What the job is (remodel? repair?):\n- Photo (attach if possible):",
 
-  /** Google Business Profile Place ID. Empty until GBP verifies. Once
-   *  verified, search Google for "Place ID Finder", look up the
-   *  business, and paste the ID here — no other code changes needed to
-   *  activate review CTAs site-wide. See `docs/gbp-setup.md`. */
-  googlePlaceId: "" as string,
+  /** Google Maps Feature ID for the GBP listing — the two-hex string
+   *  after `!1s` in any Maps share URL. Drives the "Leave a review on
+   *  Google" CTAs site-wide via `reviewLink()`. Swap to a different
+   *  listing's FID by copying it from that listing's Maps URL.
+   *  See `docs/gbp-setup.md`. */
+  googleReviewFid: "0x6a95c04f46ae0b71:0xdf19ece4cb08a82a",
+
+  /** Hand-edited rating + count shown on the homepage hero and above
+   *  the estimate form. Set `googleReviewCount` to 0 to hide the
+   *  block; bump these whenever a new review lands. No API. */
+  googleRating: 5.0 as number,
+  googleReviewCount: 1 as number,
 } as const;
 
 /** Services — truck-aligned. Two tiers:
@@ -150,11 +157,16 @@ export function whatsappLink(): string {
   return `https://wa.me/${site.whatsappNumber}?text=${encoded}`;
 }
 
-/** Helper — Google Business Profile review form link.
- *  Returns null until googlePlaceId is set (post-GBP-verification).
- *  Consumers should null-check and not render the CTA when null. */
-export function reviewLink(): string | null {
-  return site.googlePlaceId
-    ? `https://search.google.com/local/writereview?placeid=${site.googlePlaceId}`
-    : null;
+/** Helper — Google review write deep link. Uses the Maps `12e1`
+ *  (write-a-review) URL keyed by Feature ID, which works without a
+ *  Places API Place ID lookup. */
+export function reviewLink(): string {
+  return `https://www.google.com/maps/place//data=!4m3!3m2!1s${site.googleReviewFid}!12e1`;
+}
+
+/** Helper — Google Maps listing URL pinned to the reviews tab. Uses
+ *  the same FID as `reviewLink()`; the `!9m1!1b1` suffix is what
+ *  surfaces the reviews list on the listing page. */
+export function listingLink(): string {
+  return `https://www.google.com/maps/place//data=!4m4!3m3!1s${site.googleReviewFid}!9m1!1b1`;
 }

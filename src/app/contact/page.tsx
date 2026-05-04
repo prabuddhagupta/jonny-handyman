@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/site.config";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { EstimateForm } from "@/components/EstimateForm";
+import { GoogleRating } from "@/components/GoogleRating";
 import { Phone, Mail, Clock, MapPin } from "lucide-react";
 import { InstagramIcon as Instagram } from "@/components/icons";
 
@@ -29,6 +30,7 @@ export default function ContactPage() {
       <section className="mx-auto max-w-6xl px-4 pb-20">
         <div className="grid md:grid-cols-5 gap-10">
           <div className="md:col-span-3">
+            <GoogleRating className="mb-4" />
             <div className="p-6 md:p-8 rounded-xl border border-[var(--color-border)] bg-white">
               <h2 className="text-xl font-semibold text-[var(--color-brand)]">
                 Request a free estimate

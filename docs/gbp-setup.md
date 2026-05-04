@@ -139,30 +139,22 @@ Rejections are common and the rejection reason is usually vague
 
 ## Once verified
 
-1. Open the GBP listing in a browser (while signed in to the owning
-   account).
-2. Find the Place ID. Search Google for **"Place ID Finder"** and
-   open the first result (it's a Google-maintained tool that moves
-   URLs occasionally). Paste the business name, click the pin on the
-   map, copy the ID.
-3. Open `src/site.config.ts`, paste the ID into the `googlePlaceId`
-   field.
-4. Commit and push. Vercel auto-deploys.
+The review CTAs are already wired and live. They're driven by the
+Maps Feature ID stored in `src/site.config.ts` as `googleReviewFid`.
+If you ever need to repoint them at a different listing, open that
+listing on Google Maps, copy the two-hex string after `!1s` in the
+URL (e.g. `0x6a95c04f46ae0b71:0xdf19ece4cb08a82a`), and paste it
+into `googleReviewFid`. Commit and push — Vercel auto-deploys.
 
-**What activates:** a "Leave a review on Google" link in the site
+**What's active:** a "Leave a review on Google" link in the site
 footer; a review nudge in the estimate-form success state; the
-WhatsApp follow-up template below now has a working URL to send.
+WhatsApp follow-up template below has a working URL to send.
 
 ## WhatsApp follow-up template
 
-Paste after every finished job. Once `handymanhouserepair.com`
-registers (README to-do), the URL is shorter / cleaner. Until then,
-use the full Google review URL directly.
-
-**Where to find the URL:** once the Place ID is live in
-`site.config.ts`, the link is in the site footer ("Leave a review on
-Google"). You can also build it manually:
-`https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID`
+Paste after every finished job. The link below is the same one the
+site renders in the footer ("Leave a review on Google") and it deep
+links straight into the Maps review composer.
 
 ```
 Thanks for having me out — hope it looks great. If you've got 30

@@ -11,7 +11,6 @@ export function EstimateForm() {
   const [state, formAction, pending] = useActionState(submitEstimate, initial);
 
   if (state?.ok) {
-    const review = reviewLink();
     return (
       <div className="p-8 rounded-xl border border-[var(--color-whatsapp)] bg-green-50">
         <CheckCircle2 className="size-8 text-[var(--color-whatsapp)]" />
@@ -22,19 +21,17 @@ export function EstimateForm() {
           You&apos;ll usually hear back within a few hours. In a rush? Send a
           WhatsApp and skip the queue.
         </p>
-        {review && (
-          <p className="mt-4 pt-4 border-t border-[var(--color-whatsapp)]/30 text-sm text-[var(--color-muted)]">
-            Already had {site.ownerName} out for a job?{" "}
-            <a
-              href={review}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-[var(--color-brand)] hover:underline"
-            >
-              Leave a review on Google →
-            </a>
-          </p>
-        )}
+        <p className="mt-4 pt-4 border-t border-[var(--color-whatsapp)]/30 text-sm text-[var(--color-muted)]">
+          Already had {site.ownerName} out for a job?{" "}
+          <a
+            href={reviewLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-[var(--color-brand)] hover:underline"
+          >
+            Leave a review on Google →
+          </a>
+        </p>
       </div>
     );
   }
