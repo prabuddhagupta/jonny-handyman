@@ -77,7 +77,7 @@ export const site = {
    *  the estimate form. Set `googleReviewCount` to 0 to hide the
    *  block; bump these whenever a new review lands. No API. */
   googleRating: 5.0 as number,
-  googleReviewCount: 1 as number,
+  googleReviewCount: 10 as number,
 } as const;
 
 /** Services — truck-aligned. Two tiers:
