@@ -41,8 +41,8 @@ export const site = {
   ],
 
   /** Contact — from the truck. Same number for voice, WhatsApp, and SMS. */
-  whatsappNumber: "12673010825",
-  smsNumber: "(267) 301-0825",
+  whatsappNumber: "19994445555",
+  smsNumber: "(999) 444-5555",
   /** Email that receives estimate form submissions. */
   contactEmail: "Sdzhangar1@gmail.com",
   /** Owner/dev notification inbox — BCC'd on form submissions, receives WhatsApp-click daily digest. */
