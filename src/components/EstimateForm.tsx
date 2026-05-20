@@ -78,7 +78,7 @@ export function EstimateForm() {
           type="tel"
           inputMode="tel"
           autoComplete="tel"
-          placeholder="(267) 301-0825"
+          placeholder="(555) 555-5555"
           defaultValue={state && !state.ok ? state.values?.phone : undefined}
           error={state && !state.ok ? state.fieldErrors?.phone : undefined}
         />
